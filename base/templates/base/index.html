@@ -1,1 +1,45 @@
-<h2>{{name}}</h2>
+{% extends "base/base.html" %}
+
+{% block content %}
+
+<div class="col-md-6 offset-md-3"> 
+
+    {% if request.user.is_authenticated %}
+
+        <h1>Welcome {{name}}</h1>
+
+    {% else %}
+
+    <h2>Login</h2>
+    <br/>
+
+    <form action="{% url 'homepage' %}" method="post">
+
+        {% csrf_token %}
+
+       
+            <div class="mb-3">
+              <input type="text" class="form-control"  aria-describedby="emailHelp" name="username" placeholder="Enter Username" required>
+            </div>
+
+            <br/>
+
+            <div class="mb-3">
+              <input type="password" class="form-control" name="password" placeholder=" Enter Password" required>
+            </div>
+            
+            <button type="submit" class="btn btn-secondary">Login</button>
+          
+
+
+    </form>
+
+    {% endif %}
+
+</div>
+
+{% endblock content %}
+
+
+
+
